@@ -13,13 +13,13 @@
 		</ol>
 		<div class="row">
 				<div class="news_box">
-					{% for category in categories %}
+					{% for category in articles %}
 					<div class="cat_news">
-						<div class="cat_img"><img src="{{ articles.image.url }}" alt=""></div>
+						<div class="cat_img"><img src="{{ category.image.url }}" alt=""></div>
 						<a href="#">{{ category.description }}</a>
-						<p>С учетом динамики развития ситуации в мире и регионе, необходимости адекватного реагирования на возникающие угрозы и вызовы, а также наших приоритетов и возможностей требует переработки Оборонная доктрина Республики Узбекистан.</p>
-						<span class="date">12.01.2017</span>
-						<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
+						<p>{{ category.content }}</p>
+						<span class="date">{{ category.update_at }}</span>
+						<span class="news_type"><i class="fa fa-pencil"></i>{{ namecategory.name }}</span>
 					</div>
 					{% endfor %}
 
