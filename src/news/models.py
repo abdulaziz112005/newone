@@ -51,5 +51,12 @@ class Articles(models.Model):
         self.slug = slugify(unidecode(self.title))
         super(Articles, self).save(*args, **kwargs)
 
+    @property
+    def imageUrl(self):
+        try:
+            url = self.photo.url
+        except:
+            url = ''
+        return url
 
 
