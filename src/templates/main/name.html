@@ -21,7 +21,7 @@
 				</ul>
 				<div class="feedback">
 					<div class="title">Обратная связь</div>
-					<form action="{% url 'news:index' %}" method="post">
+					<form action="{% url 'contact:index' %}" method="post">
 						{% csrf_token %}
                         {{ form.non_field_errors }}
                         <label>full name</label>
