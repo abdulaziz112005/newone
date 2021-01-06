@@ -1,12 +1,11 @@
 from .forms import NameForm
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from .models import *
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 
 def contact(request):
     contacts = Contact.objects.get(pk=1)
-
 
 
     if request.method == 'POST':
@@ -21,5 +20,5 @@ def contact(request):
 
 
 def next(request):
-    return render(request, 'main/index.html')
+    return render(request, 'main/index.html', {})
 
