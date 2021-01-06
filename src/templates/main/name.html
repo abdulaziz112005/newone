@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<a href="#" class="bigrek"></a>
+	<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="clearfix"></div>
+		<ol class="breadcrumb">
+			<li><a href="#">Главная</a></li>
+			<li class="active">Контакты</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-5 col-xs-12">
+				<div class="cat_title">{{ contacts.name }}</div>
+				<div class="con_info">{{ contacts.description }}</div>
+				<ul class="contact">
+					<li><i class="fa fa-map-marker"></i> {{ contacts.location }}</li>
+					<li><i class="fa fa-print"></i> {{ contacts.fax }}</li>
+					<li><i class="fa fa-mobile"></i> {{ contacts.number }}</li>
+					<li><i class="fa fa-envelope"></i> {{ contacts.email }}</li>
+				</ul>
+				<div class="feedback">
+					<div class="title">Обратная связь</div>
+					<form action="{% url 'news:index' %}" method="post">
+						{% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <label>full name</label>
+                        {{ form.fullname }}
+                        {{ form.fullname.errors }}
+						<label>Email</label>
+						{{ form.email }}
+						{{ form.email.errors }}
+						<label>phone_number</label>
+						{{ form.phone_number }}
+						{{ form.phone_number.errors }}
+						<button class="btn submit">Отправить</button>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-7 col-xs-12">
+				<div class="con_img">
+					<img src="{% static 'img/contact.jpg' %}" alt="">
+				</div>
+				<div class="map"></div>
+			</div>
+		</div>
+		<div class="foot_rek">
+			<img src="{% static 'img/foootrek.jpg' %}" alt="">
+		</div>
+	</div>
+
+{% endblock %}
