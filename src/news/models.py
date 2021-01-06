@@ -54,7 +54,7 @@ class Articles(models.Model):
     @property
     def imageUrl(self):
         try:
-            url = self.photo.url
+            url = self.image.url
         except:
             url = ''
         return url
