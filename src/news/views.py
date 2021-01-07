@@ -4,7 +4,15 @@ from .models import Category, Tags, Articles
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    fresh = Articles.objects.order_by('-create_at')[:5]
+    news = Articles.objects.all()
+    categorys = Category.objects.all()
+    context = {
+        'categorys': categorys,
+        'news': news,
+        'fresh':fresh 
+    }
+    return render(request, 'main/index.html', context)
 
 def category(request):
     categories = Category.objects.all()

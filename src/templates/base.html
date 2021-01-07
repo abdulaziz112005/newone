@@ -12,17 +12,19 @@
 	<link rel="stylesheet" href="{% static 'css/media.css' %}">
 </head>
 <body>
-	<div class="topheader">
+
+
+<div class="topheader">
 		<div class="container">
-		
+
 				<ul class="menu">
 					<li><a href="#">о нас</a></li>
 					<li><a href="#">редакционная</a></li>
-					<li><a href="catalog/">каталогь</a></li>
+					<li><a href="#">каталогь</a></li>
 					<li><a href="contact/">контакты</a>
 </li>
 					</ul>
-	
+
 			<ul class="kurs">
 				<li>1 USD = 3243.89</li>
 				<li>1 EUR = 3419.18</li>
@@ -57,21 +59,20 @@
 					<i class="fa fa-close"></i>
 				</button>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">экономика</a></li>
-					<li><a href="#">политика</a></li>
-					<li><a href="#">общество</a></li>
-					<li><a href="#">культура</a></li>
-					<li><a href="#">спорт</a></li>
-					<li><a href="catalog/">каталогь</a></li>
-					<li><a href="contact/">контакты</a></li>
+					{% for category in categorys %}
+					<li class="active"><a href="#">{{ category.name }}</a></li>
+					{% endfor %}
+					<li><a href="#">контакты</a></li>
+
 				</ul>
-			
+
 			</div>
 		</div>
 	</nav>
 	<a href="#" class="bigrek"></a>
-	{% block content %} {% endblock %}
-<div class="foot_about">
+
+	{% block content %} {% endblock%}
+		<div class="foot_about">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3 col-xs-12"><img src="{% static 'img/logo.png' %}" alt="" class="logo"></div>
@@ -105,8 +106,7 @@
 			</div>
 		</div>
 	</footer>
-	
-	
+
 	
 	<script src="{% static 'js/jquery.js' %}"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>

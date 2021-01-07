@@ -1,5 +1,202 @@
 {% extends 'base.html' %}
 {% block title %} INDEX {% endblock %}
+{% load static %}
 {% block content %}
+
+
+
+<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="l_news">
+			<div class="title">Актуальные</div>
+			<div class="l_news_box">
+				<div id="littlenews" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<a href="#">Nulla consequat massa quis enim. Donec pede justo, fringilla vel</a>
+						</div>
+						<div class="item">
+							<a href="#">111 Nulla consequat massa quis enim. Donec pede justo, fringilla vel</a>
+						</div>
+					</div>
+
+					<a class="left carousel-control" href="#littlenews" role="button" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="right carousel-control" href="#littlenews" role="button" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="fav_news">
+			<div class="big_fav">
+				<div id="bigfav" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="{% static 'img/news2.jpg' %}" alt="...">
+								<a href="#">
+									<div class="carousel-caption">
+										<div class="caption_pos">
+											<div class="type_news">ПОЛИТИКА</div>
+											<div class="title">УЗБЕКИСТАН ПОВЫСИТ ЭФФЕКТИВНОСТЬ МЕР ПО СОЦИАЛЬНОЙ ЗАЩИТЕ ВОЕННОСЛУЖАЩИХ</div>
+											<span class="date">13.01.2017</span>
+											<span class="com_count"><span class="fa fa-comments"></span> 125 </span>
+										</div>
+									</div>
+								</a>
+						</div>
+
+					</div>
+					<div class="control">
+					<a class="left carousel-control" href="#bigfav" role="button" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="right carousel-control" href="#bigfav" role="button" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+					</div>
+				</div>
+			</div>
+			<div class="list_fav">
+
+				<div class="title"></div>
+				<ul>
+					<li>
+					{% for new in news %}
+						{% if new.is_actual == True %}
+
+
+							<a href="{% url 'news:info' new.id %}">
+								<div class="list_fimg">
+									<img src="{{ new.image.url }}" alt="">
+								</div>
+								<span class="list_type">ОБЩЕСТВО</span>
+								<span class="list_title" > {{ new.title }}</span>
+								<span class="date">{{ new.create_at  }}</span>
+							</a>
+
+							{% endif %}
+						{% endfor %}
+					</li>
+
+				</ul>
+				<a href="#" class="more">больше актуальные новости</a>
+
+			</div>
+
+
+		<div class="clearfix"></div>
+		</div>
+		<div class="head_title">популярные новости</div>
+		<div class="popular">
+			<div class="row">
+				{% for new in news %}
+					{% if new.is_columnist == True %}
+						<div class="col-md-3 col-xs-12">
+							<div class="p_img"><img src="{{ new.image.url }}" alt=""></div>
+							<a href="{% url 'news:info' new.id %}">{{ new.title }}</a>
+							<span class="date">{{ new.create_at }}</span>
+							<span class="p_type"><i class="fa fa-pencil"></i> Общество</span>
+						</div>
+					{% endif %}
+				{% endfor %}
+
+			</div>
+		</div>
+
+
+
+	<a href="#" class="big_more">больше новости</a>
+	<div class="rek1"></div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-xs-12">
+				<div class="head_title">ПРОИСШЕСТВИЯ</div>
+				<div class="news_box">
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							{% for new in news %}
+							{% if new.category_id == 2 %}
+							<div class="big_news">
+								<div class="big_n_img"><img src="{{ new.image.url}}" alt=""></div>
+								<a href="{% url 'news:info' new.id %}">{{ new.description }}</a>
+								<span class="date">{{ new.create_at }}</span>
+								<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
+								<div class="desc">{{ new.content  }}</div>
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+
+							<div class="col-md-6 col-xs-12">
+							<ul class="list_news">
+								{% for new in news %}
+								{% if new.is_actual == True %}
+								<li>
+									<div class="list_img"><img src="{{ new.image.url }}" alt=""></div>
+									<a href="{% url 'news:info' new.id %}">{{ new.title}}</a>
+									<span class="date">{{ new.create_at  }}</span>
+									<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
+								</li>
+								{% endif %}
+							{% endfor %}
+
+							</ul>
+
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+
+
+				<div class="col-md-4 col-xs-12">
+				<div class="head_title">Свежие новости</div>
+				<div id="listnews" class="carousel slide listnews" data-ride="carousel">
+					<div class="news_box">
+						<div class="carousel-inner" role="listbox">
+							<div class="item active">
+								<ul class="list_news">
+							{% for freshs in fresh%}
+									<li>
+										<div class="list_img"><img src="{{ freshs.image.url }}" alt=""></div>
+										<a href="{% url 'news:info' freshs.id %}">{{freshs.title }}</a>
+										<span class="date">{{ freshs.create_at }}</span>
+										<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
+									</li>
+							{% endfor %}
+								</ul>
+							</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="indi_box">
+						<ol class="carousel-indicators">
+							<li data-target="#listnews" data-slide-to="0" class="active"></li>
+							<li data-target="#listnews" data-slide-to="1"></li>
+						</ol>
+					</div>
+				</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
