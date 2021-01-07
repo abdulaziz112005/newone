@@ -18,10 +18,12 @@ def category(request):
     categories = Category.objects.all()
     tags = Tags.objects.all()
     articles = Articles.objects.all()
+    categorys = Category.objects.all()
     context = {
         'categories': categories,
         'tags': tags,
-        'articles': articles
+        'articles': articles,
+        'categorys': categorys
     }
     print(context)
     return render(request, 'main/category.html', context)

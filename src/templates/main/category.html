@@ -9,17 +9,17 @@
 
 		<ol class="breadcrumb">
 			<li><a href="#">Главная</a></li>
-			<li class="active">Политика</li>
+			<li class="active">{{ articles.category.name }}</li>
 		</ol>
 		<div class="row">
 				<div class="news_box">
-					{% for category in articles %}
+					{% for article in articles %}
 					<div class="cat_news">
-						<div class="cat_img"><img src="{{ category.image.url }}" alt=""></div>
-						<a href="#">{{ category.description }}</a>
-						<p>{{ category.content }}</p>
-						<span class="date">{{ category.update_at }}</span>
-						<span class="news_type"><i class="fa fa-pencil"></i>{{ namecategory.name }}</span>
+						<div class="cat_img"><img src="{{ article.image.url }}" alt=""></div>
+						<a href="#">{{ article.description }}</a>
+						<p>{{ article.content }}</p>
+						<span class="date">{{ article.update_at }}</span>
+						<span class="news_type"><i class="fa fa-pencil"></i>{{ article.category.name }}</span>
 					</div>
 					{% endfor %}
 
