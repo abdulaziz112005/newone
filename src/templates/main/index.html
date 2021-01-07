@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %} INDEX {% endblock %}
 {% load static %}
+
 {% block content %}
 
 
@@ -68,13 +69,13 @@
 						{% if new.is_actual == True %}
 
 
-							<a href="{% url 'news:info' new.id %}">
+							<a href="{% url 'news:info' new.slug %}">
 								<div class="list_fimg">
 									<img src="{{ new.image.url }}" alt="">
 								</div>
 								<span class="list_type">ОБЩЕСТВО</span>
 								<span class="list_title" > {{ new.title }}</span>
-								<span class="date">{{ new.create_at  }}</span>
+								<span class="date">{{ new.create_at | date:'d.m.Y'  }}</span>
 							</a>
 
 							{% endif %}
@@ -96,8 +97,8 @@
 					{% if new.is_columnist == True %}
 						<div class="col-md-3 col-xs-12">
 							<div class="p_img"><img src="{{ new.image.url }}" alt=""></div>
-							<a href="{% url 'news:info' new.id %}">{{ new.title }}</a>
-							<span class="date">{{ new.create_at }}</span>
+							<a href="{% url 'news:info' new.slug %}">{{ new.title }}</a>
+							<span class="date">{{ new.create_at | date:'d.m.Y' }}</span>
 							<span class="p_type"><i class="fa fa-pencil"></i> Общество</span>
 						</div>
 					{% endif %}
@@ -122,8 +123,8 @@
 							{% if new.category_id == 2 %}
 							<div class="big_news">
 								<div class="big_n_img"><img src="{{ new.image.url}}" alt=""></div>
-								<a href="{% url 'news:info' new.id %}">{{ new.description }}</a>
-								<span class="date">{{ new.create_at }}</span>
+								<a href="{% url 'news:info' new.slug %}">{{ new.description }}</a>
+								<span class="date">{{ new.create_at | date:'d.m.Y' }}</span>
 								<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
 								<div class="desc">{{ new.content  }}</div>
 							</div>
@@ -137,8 +138,8 @@
 								{% if new.is_actual == True %}
 								<li>
 									<div class="list_img"><img src="{{ new.image.url }}" alt=""></div>
-									<a href="{% url 'news:info' new.id %}">{{ new.title}}</a>
-									<span class="date">{{ new.create_at  }}</span>
+									<a href="{% url 'news:info' new.slug %}">{{ new.title}}</a>
+									<span class="date">{{ new.create_at | date:'d.m.Y'  }}</span>
 									<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
 								</li>
 								{% endif %}
@@ -162,8 +163,8 @@
 							{% for freshs in fresh%}
 									<li>
 										<div class="list_img"><img src="{{ freshs.image.url }}" alt=""></div>
-										<a href="{% url 'news:info' freshs.id %}">{{freshs.title }}</a>
-										<span class="date">{{ freshs.create_at }}</span>
+										<a href="{% url 'news:info' freshs.slug %}">{{freshs.title }}</a>
+										<span class="date">{{ freshs.create_at | date:'d.m.Y' }}</span>
 										<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
 									</li>
 							{% endfor %}

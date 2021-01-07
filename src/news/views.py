@@ -15,23 +15,27 @@ def index(request):
     return render(request, 'main/index.html', context)
 
 def category(request):
-    categories = Category.objects.all()
-    tags = Tags.objects.all()
-    articles = Articles.objects.all()
+    articles = Articles.objects.select_related('category').all()
     categorys = Category.objects.all()
     context = {
-        'categories': categories,
-        'tags': tags,
         'articles': articles,
         'categorys': categorys
     }
     print(context)
     return render(request, 'main/category.html', context)
 
-def view(request, id):
+def view(request, slug):
+    news = Articles.objects.order_by('-create_at')[:5]
     try:
-        view = Articles.objects.get(pk=id)
+        article = Articles.objects.get(slug=slug)
+        article.views_count =article.views_count + 1
+        article.save()
+        tags = article.tags.all()
     except Articles.DoesNotExist:
-        view = None
-    context= {"view": view}
+        article = None
+    context= {'article': article,
+              'categorys': categorys,
+              'news': news,
+              'tags': tags
+              }
     return render(request, 'main/view.html', context)
