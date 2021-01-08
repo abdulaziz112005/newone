@@ -11,7 +11,7 @@ def contact(request):
     if form.is_valid():
         form.save()
 
-    context = {'contacts': contacts, 'form': form, 'categorys':categorys }
+    context = {'contacts': contacts, 'form': form }
     return render(request, 'main/name.html', context)
 
 
