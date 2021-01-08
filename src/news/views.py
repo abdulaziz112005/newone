@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import Category, Tags, Articles
 
 
-
 def index(request):
     fresh = Articles.objects.order_by('-create_at')[:5]
     news = Articles.objects.all()
@@ -34,7 +33,6 @@ def view(request, slug):
     except Articles.DoesNotExist:
         article = None
     context= {'article': article,
-              'categorys': categorys,
               'news': news,
               'tags': tags
               }
