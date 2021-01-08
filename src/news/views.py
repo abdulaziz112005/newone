@@ -1,15 +1,18 @@
 from django.shortcuts import render
 from .models import Category, Tags, Articles
-
+from datetime import date, timedelta
 
 def index(request):
     fresh = Articles.objects.order_by('-create_at')[:5]
+    counter = Articles.objects.filter(create_at__gt=date.today()-timedelta(days=2)).order_by('-views_count')[:5]
+    print(date.today())
     news = Articles.objects.all()
     categorys = Category.objects.all()
     context = {
         'categorys': categorys,
         'news': news,
-        'fresh':fresh 
+        'fresh':fresh,
+        'counter': counter
     }
     return render(request, 'main/index.html', context)
 

@@ -93,15 +93,13 @@
 		<div class="head_title">популярные новости</div>
 		<div class="popular">
 			<div class="row">
-				{% for new in news %}
-					{% if new.is_columnist == True %}
+				{% for counters in counter %}
 						<div class="col-md-3 col-xs-12">
-							<div class="p_img"><img src="{{ new.image.url }}" alt=""></div>
-							<a href="{% url 'news:info' new.slug %}">{{ new.title }}</a>
-							<span class="date">{{ new.create_at | date:'d.m.Y' }}</span>
+							<div class="p_img"><img src="{{ counters.image.url }}" alt=""></div>
+							<a href="{% url 'news:info' counters.slug %}">{{ new.title }}</a>
+							<span class="date">{{ counters.create_at | date:'d.m.Y' }}</span>
 							<span class="p_type"><i class="fa fa-pencil"></i> Общество</span>
 						</div>
-					{% endif %}
 				{% endfor %}
 
 			</div>

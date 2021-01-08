@@ -20,6 +20,8 @@ parts/
 sdist/
 var/
 Scripts/
+media/
+bin/
 *.egg-info/
 .installed.cfg
 *.egg
